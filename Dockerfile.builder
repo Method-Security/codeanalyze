@@ -1,8 +1,7 @@
 # Dockerfile used for the compilation of the statically compiled binary
 FROM golang:1.22.4-alpine3.20 as base
 ARG GORELEASER_VERSION="v2.0.1"
-ARG CLI_NAME="networkscan"
-ARG TARGETARCH
+ARG CLI_NAME="codeanalyze"
 
 RUN \
   apk add --no-cache git python3-dev gcc musl-dev bash && \
