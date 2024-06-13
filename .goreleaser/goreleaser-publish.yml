@@ -66,6 +66,8 @@ dockers:
       - "--label=org.opencontainers.image.url=https://method.security"
       - "--label=org.opencontainers.image.documentation=https://github.com/method-security/codeanalyze"
       - "--platform=linux/amd64"
+    extra_files:
+      - configs/
   - image_templates:
       - "ghcr.io/method-security/codeanalyze:{{ .Version }}-arm64"
       - "ghcr.io/method-security/codeanalyze:latest-arm64"
@@ -85,6 +87,8 @@ dockers:
       - "--label=org.opencontainers.image.url=https://method.security"
       - "--label=org.opencontainers.image.documentation=https://github.com/method-security/codeanalyze"
       - "--platform=linux/arm64"
+    extra_files:
+      - configs/
 
 docker_manifests:
   - name_template: 'ghcr.io/method-security/codeanalyze:{{ .Version }}'
