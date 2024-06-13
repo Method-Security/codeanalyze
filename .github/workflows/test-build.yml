@@ -1,0 +1,23 @@
+name: 🔨 Build Test
+on:
+  pull_request:
+    paths:
+      - "**.*"
+  push:
+    branches:
+      - develop
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    name: Test Build
+    uses: ./.github/workflows/reusable-build.yml
+    with:
+      goreleaser_config: goreleaser.yml
+      goreleaser_options: "--snapshot"
+    secrets: inherit
+    permissions:
+      id-token: write # For cosign
+      packages: write # For GHCR
+      contents: read # Not required for public repositories, but for clarity

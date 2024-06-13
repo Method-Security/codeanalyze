@@ -1,0 +1,23 @@
+name: 🙏🏻 Verify
+
+on:
+  pull_request:
+    paths:
+      - "**.*"
+  push:
+    branches:
+      - develop
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Dependences
+        run: sudo apt install libpcap-dev
+
+      - name: Godel Verify
+        run: ./godelw verify
