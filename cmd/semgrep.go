@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// InitSastCommand initializes the static analysis family of commands
 func (a *CodeAnalyze) InitSastCommand() {
 	a.SemgrepCmd = &cobra.Command{
 		Use:   "semgrep",

@@ -1,3 +1,6 @@
+// Package cmd implements the CobraCLI commands for the methodaws CLI. Subcommands for the CLI should all live within
+// this package. Logic should be delegated to internal packages and functions to keep the CLI commands clean and
+// focused on CLI I/O.
 package cmd
 
 import (
@@ -13,6 +16,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// CodeAnalyze is the main struct for the codeanalyze CLI. It contains all of the necessary fields to run the CLI and
+// all the subcommands. It is also responsible for holding the Output configuration and the Output signal. This output signal
+// is used to write the output of the command to the desired output format after the command has completed.
 type CodeAnalyze struct {
 	Version      string
 	RootFlags    config.RootFlags
@@ -23,6 +29,9 @@ type CodeAnalyze struct {
 	SemgrepCmd   *cobra.Command
 }
 
+// NewCodeAnalyze creates a new CodeAnalyze struct with the given version. This struct is used throughout the execution
+// of the codeanalyze CLI to hold the necessary fields and subcommands.
+// We pass the version in here from the main.go file, wehre we set the version string during the build process.
 func NewCodeAnalyze(version string) *CodeAnalyze {
 	codeAnalyze := CodeAnalyze{
 		Version: version,
@@ -36,6 +45,12 @@ func NewCodeAnalyze(version string) *CodeAnalyze {
 	return &codeAnalyze
 }
 
+// InitRootCommand initializes the root command for the codeanalyze CLI. This command is the main entry point for the CLI
+// the CLI and is responsible for setting up the necessary flags and subcommands. It also initializes the output
+// configuration and signal for the CLI.
+// Importantly, it sets up the PersistentPreRunE and PersistentPostRunE functions for the root command. These functions
+// are critical in setting up the output configuration for the CLI and then writing that output to the desired output
+// format.
 func (a *CodeAnalyze) InitRootCommand() {
 	var outputFormat string
 	var outputFile string

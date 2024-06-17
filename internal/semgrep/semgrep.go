@@ -1,3 +1,4 @@
+// Package semgrep holds all of the data structures and logic related to running semgrep commands on a codebase.
 package semgrep
 
 import (
@@ -8,6 +9,7 @@ import (
 	"strings"
 )
 
+// Metadata holds the metadata for a semgrep finding.
 type Metadata struct {
 	Category           string   `json:"category" yaml:"category"`
 	Confidence         string   `json:"confidence" yaml:"confidence"`
@@ -24,6 +26,7 @@ type Metadata struct {
 	VulnerabilityClass []string `json:"vulnerability_class" yaml:"vulnerability_class"`
 }
 
+// Dev holds all of the development information for a semgrep finding.
 type Dev struct {
 	Origin    string `json:"origin" yaml:"origin"`
 	RID       string `json:"r_id" yaml:"r_id"`
@@ -33,6 +36,7 @@ type Dev struct {
 	VersionID string `json:"version_id" yaml:"version_id"`
 }
 
+// Extra holds additional information for a semgrep finding.
 type Extra struct {
 	EngineKind      string             `json:"engine_kind" yaml:"engine_kind"`
 	Fingerprint     string             `json:"fingerprint" yaml:"fingerprint"`
@@ -49,6 +53,7 @@ type Extra struct {
 	SourceRuleURL   string             `json:"source-rule-url" yaml:"source-rule-url"`
 }
 
+// Metavar holds the meta variable information for a semgrep finding.
 type Metavar struct {
 	AbstractContent string `json:"abstract_content" yaml:"abstract_content"`
 	End             struct {
@@ -63,6 +68,7 @@ type Metavar struct {
 	} `json:"start" yaml:"start"`
 }
 
+// Result holds the output result information for a given semgrep finding.
 type Result struct {
 	CheckID string `json:"check_id" yaml:"check_id"`
 	Path    string `json:"path" yaml:"path"`
@@ -79,6 +85,7 @@ type Result struct {
 	Extra Extra `json:"extra" yaml:"extra"`
 }
 
+// Error holds the error information for a semgrep finding.
 type Error struct {
 	Code    int    `json:"code" yaml:"code"`
 	Level   string `json:"level" yaml:"level"`
@@ -86,11 +93,14 @@ type Error struct {
 	Type    string `json:"type" yaml:"type"`
 }
 
+// Report holds all of the information for a semgrep run, including all of the non-fatal errors and results.
 type Report struct {
 	Errors  []Error  `json:"errors" yaml:"errors"`
 	Results []Result `json:"results" yaml:"results"`
 }
 
+// ExecuteSemgrep runs the semgrep command with the provided target and configValue. It returns the report of the semgrep
+// including all of the results and the non-fatal errors.
 func ExecuteSemgrep(ctx context.Context, target string, configValue string) (Report, error) {
 	// Prepare the semgrep arguments
 	args := strings.Fields(configValue)
