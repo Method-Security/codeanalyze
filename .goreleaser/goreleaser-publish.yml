@@ -50,6 +50,8 @@ dockers:
   - image_templates:
       - "ghcr.io/method-security/codeanalyze:{{ .Version }}-amd64"
       - "ghcr.io/method-security/codeanalyze:latest-amd64"
+      - "docker.io/methodsecurity/codeanalyze:{{ .Version }}-amd64"
+      - "docker.io/methodsecurity/codeanalyze:latest-amd64"
     use: buildx
     goos: linux
     goarch: amd64
@@ -71,6 +73,8 @@ dockers:
   - image_templates:
       - "ghcr.io/method-security/codeanalyze:{{ .Version }}-arm64"
       - "ghcr.io/method-security/codeanalyze:latest-arm64"
+      - "docker.io/methodsecurity/codeanalyze:{{ .Version }}-arm64"
+      - "docker.io/methodsecurity/codeanalyze:latest-arm64"
     use: buildx
     goos: linux
     goarch: arm64
@@ -95,6 +99,18 @@ docker_manifests:
     image_templates:
     - 'ghcr.io/method-security/codeanalyze:{{ .Version }}-amd64'
     - 'ghcr.io/method-security/codeanalyze:{{ .Version }}-arm64'
+  - name_template: 'ghcr.io/method-security/codeanalyze:latest'
+    image_templates:
+    - 'ghcr.io/method-security/codeanalyze:{{ .Version }}-amd64'
+    - 'ghcr.io/method-security/codeanalyze:{{ .Version }}-arm64'
+  - name_template: 'methodsecurity/codeanalyze:{{ .Version }}'
+    image_templates:
+    - 'docker.io/methodsecurity/codeanalyze:{{ .Version }}-amd64'
+    - 'docker.io/methodsecurity/codeanalyze:{{ .Version }}-arm64'
+  - name_template: 'methodsecurity/codeanalyze:latest'
+    image_templates:
+    - 'docker.io/methodsecurity/codeanalyze:{{ .Version }}-amd64'
+    - 'docker.io/methodsecurity/codeanalyze:{{ .Version }}-arm64'
 
 sboms:
   - artifacts: archive
