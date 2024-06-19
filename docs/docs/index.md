@@ -6,7 +6,7 @@ codeanalyze offers a variety of static code analysis tools and techniques that a
 
 ## Top Level Flags
 
-networkscan has several top level flags that can be used on any subcommand. These include:
+codeanalyze has several top level flags that can be used on any subcommand. These include:
 
 ```bash
 Flags:
@@ -19,8 +19,8 @@ Flags:
 
 ## Version Command
 
-Run `networkscan version` to get the exact version information for your binary
+Run `codeanalyze version` to get the exact version information for your binary
 
 ## Output Formats
 
-For more information on the various output formats that are supported by networkscan, see the [Output Formats](https://method-security.github.io/docs/output.html) page in our organization wide documentation.
+For more information on the various output formats that are supported by codeanalyze, see the [Output Formats](https://method-security.github.io/docs/output.html) page in our organization wide documentation.
