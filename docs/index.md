@@ -28,13 +28,7 @@ For the full list of available installation options, please see the [Installatio
 ### General Usage
 
 ```bash
-codeanalyze semgrep <target>
-```
-
-#### Examples
-
-```bash
-codeanalyze portscan --topports 100 scanme.sh
+codeanalyze semgrep --config-type template --config-value <value> --target /path/to/target --local-rules-dir /path/to/rules
 ```
 
 ## Contributing

@@ -2,11 +2,11 @@
 
 ## Adding a new capability
 
-To add a new scan to networkscan, providing new enumeration capabilities to security operators everywhere, please see the [adding a new capability](./adding.md) page.
+To add a new scan to codeanalyze, providing new enumeration capabilities to security operators everywhere, please see the [adding a new capability](./adding.md) page.
 
 ## Setting up your development environment
 
-If you've just cloned networkscan for the first time, welcome to the community! We use Palantir's [godel](https://github.com/palantir/godel) to streamline local development and [goreleaser](https://goreleaser.com/) to handle the heavy lifting on the release process.
+If you've just cloned codeanalyze for the first time, welcome to the community! We use Palantir's [godel](https://github.com/palantir/godel) to streamline local development and [goreleaser](https://goreleaser.com/) to handle the heavy lifting on the release process.
 
 To get started with godel, you can run
 
@@ -24,7 +24,7 @@ We can use godel to build our CLI locally by running
 ./godelw build
 ```
 
-You should see output in `out/build/networkscan/<version>/<os>-<arch>/networkscan`.
+You should see output in `out/build/codeanalyze/<version>/<os>-<arch>/codeanalyze`.
 
 If you'd like to clean this output up, you can run
 
@@ -34,7 +34,7 @@ If you'd like to clean this output up, you can run
 
 ## Testing releases locally
 
-We can use goreleaser locally as well to test our builds. As networkscan uses [cosign](https://github.com/sigstore/cosign) to sign our artifacts and Docker containers during our CI pipeline, we'll want to skip this step when running locally.
+We can use goreleaser locally as well to test our builds. As codeanalyze uses [cosign](https://github.com/sigstore/cosign) to sign our artifacts and Docker containers during our CI pipeline, we'll want to skip this step when running locally.
 
 ```bash
 goreleaser release --snapshot --clean --skip sign
