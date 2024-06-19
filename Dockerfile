@@ -1,6 +1,8 @@
-FROM alpine:3.20 as base
+FROM alpine:3.20
 
 ARG CLI_NAME="codeanalyze"
+ARG USERNAME="method"
+ARG SEMGREP_VERSION="1.76.0"
 
 RUN \
   apk update && \
@@ -20,16 +22,19 @@ RUN \
   mkdir -p /opt/method/${CLI_NAME}/service/bin && \
   mkdir -p /mnt/output
 
-COPY configs/* /opt/method/${CLI_NAME}/var/conf/
-COPY ${CLI_NAME} /opt/method/${CLI_NAME}/service/bin/${CLI_NAME}
+# COPY configs/* /opt/method/${CLI_NAME}/var/conf/
+# COPY ${CLI_NAME} /opt/method/${CLI_NAME}/service/bin/${CLI_NAME}
 
 RUN \
-  adduser --disabled-password --gecos '' method && \
-  chown -R method:method /opt/method/${CLI_NAME}/ && \
-  chown -R method:method /mnt/output
+  adduser --disabled-password --gecos '' ${USERNAME} && \
+  chown -R ${USERNAME}:${USERNAME} /opt/method/${CLI_NAME}/ && \
+  chown -R ${USERNAME}:${USERNAME} /mnt/output
 
-USER method
+USER ${USERNAME}
 
 WORKDIR /opt/method/${CLI_NAME}/
 
-ENV PATH="/opt/method/${CLI_NAME}/service/bin:${PATH}"
+RUN \
+  pipx install semgrep==${SEMGREP_VERSION}
+
+ENV PATH="/opt/method/${CLI_NAME}/service/bin:/home/${USERNAME}/.local/bin:${PATH}"
