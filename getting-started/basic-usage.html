@@ -889,17 +889,21 @@
 
 <h1 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">#</a></h1>
 <h2 id="binaries">Binaries<a class="headerlink" href="#binaries" title="Permanent link">#</a></h2>
-<p>Running as a binary allows you to skip dealing with any container related networking issues and leverage the same network interface that the host machine is using.</p>
-<p>You can validate that the binary is working by scanning the publicly available <code>scanme.sh</code>.</p>
-<div class="highlight"><pre><span></span><code>networkscan<span class="w"> </span>portscan<span class="w"> </span>--topports<span class="w"> </span><span class="m">100</span><span class="w"> </span>--target<span class="w"> </span>scanme.sh
+<p>Running codeanalyze as a binary allows you to more easily scan local files on your machine without worrying about Docker volumes.</p>
+<div class="highlight"><pre><span></span><code>codeanalyze<span class="w"> </span>semgrep<span class="w"> </span>--config-type<span class="w"> </span>template<span class="w"> </span>--config-value<span class="w"> </span>&lt;value&gt;<span class="w"> </span>--target<span class="w"> </span>/path/to/target<span class="w"> </span>--local-rules-dir<span class="w"> </span>/path/to/rules
 </code></pre></div>
 <h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">#</a></h2>
-<p>Running networkscan within a Docker container should typically work similarly to running directly on a host, however, occasionally there are a few things to keep in mind.</p>
+<p>Running codeanalyze within a Docker container should typically work similarly to running directly on a host, however, but there are a few things to keep in mind.</p>
 <p>If you're running on a Docker container on a MacOS machine and you are trying to scan a locally running service, you can leverage the <code>host.docker.internal</code> address as mentioned in the Docker documentation <a href="https://docs.docker.com/desktop/networking/#i-want-to-connect-from-a-container-to-a-service-on-the-host">here</a>.</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>ghcr.io/method-security/networkscan<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>portscan<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--topports<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--target<span class="w"> </span>scanme.sh
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/path/to/target:/opt/target<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/path/to/rules:/opt/rules<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>methodsecurity/codeanalyze<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>semgrep<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config-type<span class="w"> </span>template<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--config-value<span class="w"> </span>&lt;value&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--target<span class="w"> </span>/opt/target<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--local-rules-dir<span class="w"> </span>/opt/rules
 </code></pre></div>
 
 

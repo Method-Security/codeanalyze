@@ -930,9 +930,9 @@
 
 <h1 id="development-setup">Development Setup<a class="headerlink" href="#development-setup" title="Permanent link">#</a></h1>
 <h2 id="adding-a-new-capability">Adding a new capability<a class="headerlink" href="#adding-a-new-capability" title="Permanent link">#</a></h2>
-<p>To add a new scan to networkscan, providing new enumeration capabilities to security operators everywhere, please see the <a href="adding.html">adding a new capability</a> page.</p>
+<p>To add a new scan to codeanalyze, providing new enumeration capabilities to security operators everywhere, please see the <a href="adding.html">adding a new capability</a> page.</p>
 <h2 id="setting-up-your-development-environment">Setting up your development environment<a class="headerlink" href="#setting-up-your-development-environment" title="Permanent link">#</a></h2>
-<p>If you've just cloned networkscan for the first time, welcome to the community! We use Palantir's <a href="https://github.com/palantir/godel">godel</a> to streamline local development and <a href="https://goreleaser.com/">goreleaser</a> to handle the heavy lifting on the release process.</p>
+<p>If you've just cloned codeanalyze for the first time, welcome to the community! We use Palantir's <a href="https://github.com/palantir/godel">godel</a> to streamline local development and <a href="https://goreleaser.com/">goreleaser</a> to handle the heavy lifting on the release process.</p>
 <p>To get started with godel, you can run</p>
 <div class="highlight"><pre><span></span><code>./godelw<span class="w"> </span>verify
 </code></pre></div>
@@ -941,12 +941,12 @@
 <p>We can use godel to build our CLI locally by running</p>
 <div class="highlight"><pre><span></span><code>./godelw<span class="w"> </span>build
 </code></pre></div>
-<p>You should see output in <code>out/build/networkscan/&lt;version&gt;/&lt;os&gt;-&lt;arch&gt;/networkscan</code>.</p>
+<p>You should see output in <code>out/build/codeanalyze/&lt;version&gt;/&lt;os&gt;-&lt;arch&gt;/codeanalyze</code>.</p>
 <p>If you'd like to clean this output up, you can run</p>
 <div class="highlight"><pre><span></span><code>./godelw<span class="w"> </span>clean
 </code></pre></div>
 <h2 id="testing-releases-locally">Testing releases locally<a class="headerlink" href="#testing-releases-locally" title="Permanent link">#</a></h2>
-<p>We can use goreleaser locally as well to test our builds. As networkscan uses <a href="https://github.com/sigstore/cosign">cosign</a> to sign our artifacts and Docker containers during our CI pipeline, we'll want to skip this step when running locally.</p>
+<p>We can use goreleaser locally as well to test our builds. As codeanalyze uses <a href="https://github.com/sigstore/cosign">cosign</a> to sign our artifacts and Docker containers during our CI pipeline, we'll want to skip this step when running locally.</p>
 <div class="highlight"><pre><span></span><code>goreleaser<span class="w"> </span>release<span class="w"> </span>--snapshot<span class="w"> </span>--clean<span class="w"> </span>--skip<span class="w"> </span>sign
 </code></pre></div>
 <p>This should output binaries, distributable tarballs/zips, as well as docker images to your local machine's Docker registry.</p>
