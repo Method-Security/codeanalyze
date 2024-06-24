@@ -6,7 +6,7 @@ ARG SEMGREP_VERSION="1.76.0"
 
 RUN \
   apk update && \
-  apk add bash jq python3-dev py3-pip pipx gcc musl-dev libffi-dev && \
+  apk add bash jq git python3-dev py3-pip pipx gcc musl-dev libffi-dev && \
   pipx install semgrep
 
 # Ensure pipx binaries are in the PATH
